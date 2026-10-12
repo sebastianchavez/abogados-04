@@ -1,0 +1,394 @@
+/* ==========================================================================
+   Ramírez & Asociados — Estilos complementarios (Bootstrap + Bootswatch)
+   ========================================================================== */
+
+:root {
+  --ab-navy: #0f1e3d;
+  --ab-navy-light: #1e3a8a;
+  --ab-navy-dark: #050f2a;
+  --ab-gold: #d4af37;
+  --ab-gold-light: #f4c430;
+  --ab-cream: #f8f5ec;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #1f2937;
+}
+
+h1, h2, h3, h4, h5, h6,
+.font-serif { font-family: 'Playfair Display', Georgia, serif; }
+
+/* ==========================================================================
+   Paleta / utilidades de color
+   ========================================================================== */
+.bg-navy        { background-color: var(--ab-navy) !important; }
+.bg-navy-light  { background-color: var(--ab-navy-light) !important; }
+.bg-navy-dark   { background-color: var(--ab-navy-dark) !important; }
+.bg-gold        { background-color: var(--ab-gold) !important; }
+.bg-cream       { background-color: var(--ab-cream) !important; }
+
+.text-navy      { color: var(--ab-navy) !important; }
+.text-gold      { color: var(--ab-gold) !important; }
+
+.border-gold    { border-color: var(--ab-gold) !important; }
+
+/* ==========================================================================
+   Reveal on scroll (IntersectionObserver)
+   ========================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: .1s; }
+.reveal-delay-2 { transition-delay: .2s; }
+.reveal-delay-3 { transition-delay: .3s; }
+.reveal-delay-4 { transition-delay: .4s; }
+.reveal-delay-5 { transition-delay: .5s; }
+
+/* ==========================================================================
+   Botones personalizados (sobre la base de Bootstrap)
+   ========================================================================== */
+.btn-gold {
+  background: linear-gradient(135deg, var(--ab-gold) 0%, var(--ab-gold-light) 100%);
+  color: var(--ab-navy);
+  font-weight: 600;
+  letter-spacing: .02em;
+  border: none;
+  padding: .85rem 1.6rem;
+  transition: transform .2s ease, box-shadow .3s ease, filter .2s ease;
+}
+.btn-gold:hover,
+.btn-gold:focus {
+  color: var(--ab-navy);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(212, 175, 55, .45);
+  filter: brightness(1.05);
+}
+
+.btn-outline-gold {
+  border: 2px solid var(--ab-gold);
+  color: var(--ab-gold);
+  font-weight: 600;
+  background: transparent;
+  padding: .8rem 1.6rem;
+  transition: all .3s ease;
+}
+.btn-outline-gold:hover,
+.btn-outline-gold:focus {
+  background: var(--ab-gold);
+  color: var(--ab-navy);
+}
+
+.btn-outline-light {
+  border: 2px solid #fff;
+  color: #fff;
+  font-weight: 600;
+  background: transparent;
+  padding: .8rem 1.6rem;
+  transition: all .3s ease;
+}
+.btn-outline-light:hover,
+.btn-outline-light:focus {
+  background: #fff;
+  color: var(--ab-navy);
+}
+
+/* ==========================================================================
+   Gradientes y textos decorativos
+   ========================================================================== */
+.gradient-text {
+  background: linear-gradient(135deg, var(--ab-gold) 0%, var(--ab-gold-light) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.hero-bg {
+  background-image: url('https://images.unsplash.com/photo-1589994965851-a8f479c573a9?w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.page-header-bg {
+  background-image: url('https://images.unsplash.com/photo-1505664194779-8beaceb93744?w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-overlay {
+  background: linear-gradient(90deg, rgba(5,15,42,.95) 0%, rgba(5,15,42,.80) 50%, rgba(5,15,42,.40) 100%);
+}
+
+.page-header-overlay {
+  background: linear-gradient(90deg, rgba(5,15,42,.95) 0%, rgba(5,15,42,.80) 100%);
+}
+
+.section-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: .3em;
+  font-size: .75rem;
+  color: var(--ab-gold);
+  font-weight: 600;
+}
+
+.deco-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 0 auto;
+}
+.deco-divider::before,
+.deco-divider::after {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: var(--ab-gold);
+}
+
+/* ==========================================================================
+   Navbar (inyectado por JS) — transparente sobre hero, sólido al hacer scroll
+   ========================================================================== */
+#navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1030;
+  background: transparent;
+  transition: background-color .3s ease, box-shadow .3s ease;
+}
+#navbar.nav-scrolled {
+  background-color: rgba(15, 30, 61, .97);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, .15);
+}
+
+#navbar .navbar-brand img { height: 48px; }
+@media (min-width: 992px) { #navbar .navbar-brand img { height: 56px; } }
+
+#navbar .nav-link {
+  position: relative;
+  color: #fff;
+  font-weight: 500;
+  padding: .5rem 0;
+  margin: 0 .25rem;
+  transition: color .3s ease;
+}
+#navbar .nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--ab-gold);
+  transition: width .3s ease;
+}
+#navbar .nav-link:hover { color: var(--ab-gold); }
+#navbar .nav-link:hover::after,
+#navbar .nav-link.is-active::after { width: 100%; }
+#navbar .nav-link.is-active { color: var(--ab-gold); }
+
+/* Botón hamburguesa blanco en navbar transparente */
+#navbar .navbar-toggler {
+  border-color: rgba(255,255,255,.4);
+  color: #fff;
+  padding: .35rem .6rem;
+}
+#navbar .navbar-toggler:focus { box-shadow: 0 0 0 .2rem rgba(212,175,55,.35); }
+#navbar .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Menú móvil desplegado: fondo navy sólido */
+#navbar .navbar-collapse.show,
+#navbar .navbar-collapse.collapsing {
+  background: var(--ab-navy-dark);
+  padding: 1rem;
+  margin-top: .5rem;
+  border-radius: .5rem;
+}
+#navbar .navbar-collapse .nav-link {
+  color: #fff;
+  padding: .6rem .5rem;
+}
+#navbar .navbar-collapse .nav-link.is-active { color: var(--ab-gold); }
+
+/* ==========================================================================
+   Stats / contadores
+   ========================================================================== */
+.counter { display: inline-block; font-variant-numeric: tabular-nums; }
+
+/* ==========================================================================
+   FAQ acordeón (custom sobre Bootstrap)
+   ========================================================================== */
+.faq-item { border-bottom: 1px solid #e5e7eb; }
+.faq-question {
+  cursor: pointer;
+  padding: 1.25rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  color: var(--ab-navy);
+  transition: color .3s ease;
+  user-select: none;
+}
+.faq-question:hover { color: var(--ab-gold); }
+.faq-question svg { transition: transform .3s ease; flex-shrink: 0; margin-left: 1rem; }
+.faq-item.open .faq-question svg { transform: rotate(180deg); color: var(--ab-gold); }
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .4s ease, padding .4s ease;
+  color: #4b5563;
+}
+.faq-item.open .faq-answer { max-height: 400px; padding-bottom: 1.25rem; }
+
+/* ==========================================================================
+   Cards de servicios / equipo (hover sutil)
+   ========================================================================== */
+.service-card {
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+  border-top: 3px solid transparent;
+}
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px -15px rgba(15, 30, 61, .25);
+  border-top-color: var(--ab-gold);
+}
+
+.icon-box {
+  width: 56px; height: 56px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ab-navy);
+  color: var(--ab-gold);
+  border-radius: .5rem;
+  flex-shrink: 0;
+}
+
+.step-circle {
+  width: 64px; height: 64px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ab-navy);
+  color: var(--ab-gold);
+  border-radius: 50%;
+  border: 4px solid var(--ab-gold);
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+/* ==========================================================================
+   Timeline (nosotros)
+   ========================================================================== */
+.timeline-line {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: var(--ab-gold);
+  transform: translateX(-50%);
+}
+.timeline-dot {
+  position: absolute;
+  left: 50%;
+  width: 20px; height: 20px;
+  background: var(--ab-gold);
+  border: 4px solid #fff;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 0 3px var(--ab-gold);
+  z-index: 2;
+}
+@media (max-width: 767.98px) {
+  .timeline-line, .timeline-dot { display: none; }
+}
+
+/* ==========================================================================
+   Equipo / miembros
+   ========================================================================== */
+.team-card .team-photo {
+  height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--ab-navy) 0%, var(--ab-navy-light) 100%);
+}
+.team-card img.avatar {
+  width: 130px; height: 130px;
+  border-radius: 50%;
+  border: 4px solid var(--ab-gold);
+  background: #fff;
+  padding: 4px;
+}
+
+/* ==========================================================================
+   Formulario (overrides sobre Bootstrap form-control)
+   ========================================================================== */
+.form-label { font-weight: 600; color: var(--ab-navy); margin-bottom: .35rem; font-size: .9rem; }
+.form-control, .form-select {
+  border: 1px solid #d1d5db;
+  border-radius: .375rem;
+  padding: .7rem .9rem;
+}
+.form-control:focus, .form-select:focus {
+  border-color: var(--ab-gold);
+  box-shadow: 0 0 0 .2rem rgba(212, 175, 55, .18);
+}
+.form-control.is-invalid { border-color: #dc2626; }
+.form-error {
+  display: none;
+  font-size: .8125rem;
+  color: #dc2626;
+  margin-top: .35rem;
+}
+.form-error.is-visible { display: block; }
+
+/* ==========================================================================
+   Mapa embebido
+   ========================================================================== */
+.map-wrap { height: 320px; border-radius: .5rem; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,.1); }
+@media (min-width: 768px) { .map-wrap { height: 420px; } }
+.map-wrap iframe { width: 100%; height: 100%; border: 0; }
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.footer-link { color: #d1d5db; text-decoration: none; transition: color .2s ease; }
+.footer-link:hover { color: var(--ab-gold); }
+
+.social-btn {
+  width: 40px; height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255,255,255,.1);
+  color: #fff;
+  transition: background-color .2s ease, color .2s ease;
+}
+.social-btn:hover { background: var(--ab-gold); color: var(--ab-navy); }
+
+/* ==========================================================================
+   Responsive: hero sin fixed-attachment en móviles (rendimiento)
+   ========================================================================== */
+@media (max-width: 1023.98px) {
+  .hero-bg { background-attachment: scroll; }
+}
+
+/* ==========================================================================
+   Utilidades tipográficas
+   ========================================================================== */
+.tracking-wide { letter-spacing: .25em; }
+.fs-sm { font-size: .85rem; }

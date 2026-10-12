@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80">
+  <rect width="80" height="80" fill="#1e3a8a"/>
+  <circle cx="40" cy="32" r="14" fill="#f4c430"/>
+  <path d="M20 70 Q40 50 60 70 Z" fill="#f4c430"/>
+  <text x="40" y="36" text-anchor="middle" font-family="Georgia, serif" font-size="16" font-weight="700" fill="#1e3a8a">CD</text>
+</svg>
